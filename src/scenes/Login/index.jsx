@@ -10,6 +10,7 @@ class LoginScene extends BaseScene {
         super();
         this.isPublic = true;
         this.template = 'empty';
+        (new Auth()).logout();
     }
 
     homeScene() {

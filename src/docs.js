@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import GraphiQL from 'graphiql';
 import fetch from 'isomorphic-fetch';
-import Auth from "./src/components/Auth";
+import Auth from "./components/Auth/index";
 
 function graphQLFetcher(graphQLParams) {
     const auth = new Auth();

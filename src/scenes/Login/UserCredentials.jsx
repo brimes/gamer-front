@@ -58,9 +58,14 @@ class UserCredentials extends Component {
                         ),
                     }}
                 />
-                <Button variant="contained" color="primary" onClick={() => {this.onEnter()}}>
-                    {t('access')}
-                </Button>
+                <div className={"login-content-buttons"}>
+                    <Button variant="contained" color="primary" onClick={() => {this.onEnter()}}>
+                        {t('access')}
+                    </Button>
+                    <Button variant="contained" color="primary" onClick={() => {this.onCreate()}}>
+                        {t('create-account')}
+                    </Button>
+                </div>
                 <Button color="secondary" onClick={() => {this.onReset()}}>
                     {t('forgot-password')}
                 </Button>

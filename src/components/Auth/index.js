@@ -41,7 +41,11 @@ class Auth extends CustomAuth {
             return null;
         }
         return JSON.parse(base64.decode(token.split('.')[1]));
+    }
 
+    logout() {
+        const cookies = new Cookies();
+        return cookies.remove(cookieName);
     }
 
 

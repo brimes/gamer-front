@@ -41,6 +41,7 @@ i18n
                     "access-with-o-auth": "Acesse com a sua rede social",
                     "registered-user": "Já tenho uma conta",
                     "full-name": "Nome completo",
+                    'create-account': 'Criar conta',
                     "email": "E-mail",
                     "password": "Senha",
                     "create": 'Criar',
@@ -57,6 +58,7 @@ i18n
                 },
                 menu: {
                     'logout': 'Sair',
+                    'ranking': 'Ranking'
                 },
                 ranking: {
                     'ranking': 'Top 10',

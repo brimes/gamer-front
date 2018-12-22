@@ -1,21 +1,21 @@
 
 import React from 'react';
 import List from '@material-ui/core/List';
-import InboxIcon from '@material-ui/icons/Inbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'react-router-dom';
 import { translate } from 'react-i18next';
 
+// Icons
+import DraftsIcon from '@material-ui/icons/Drafts';
+import GradeIcon from '@material-ui/icons/Grade';
+import ExitIcon from '@material-ui/icons/ExitToApp';
+
+
 let counter = 0;
 
 class Menu extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-
     userMenu(type) {
         let menuItens = this.normal();
         if (type === 'admin') {
@@ -32,7 +32,7 @@ class Menu extends React.Component {
                 <Link key={counter} to={item.path}>
                     <ListItem button>
                         <ListItemIcon>
-                            <InboxIcon />
+                            {item.icon}
                         </ListItemIcon>
                         <ListItemText primary={item.label} />
                     </ListItem>
@@ -45,7 +45,6 @@ class Menu extends React.Component {
     admin() {
         const { t } = this.props;
         let itens = this.normal();
-        itens.push({icon: (<DraftsIcon />), label: t('ranking'), path: "/ranking"});
         itens.push({icon: (<DraftsIcon />), label: t('users'), path: "/users"});
         return itens;
 
@@ -54,8 +53,8 @@ class Menu extends React.Component {
     normal() {
         const { t } = this.props;
         return [
-            {icon: (<DraftsIcon />), label: t('dashboard'), path: "/dashboard"},
-            {icon: (<DraftsIcon />), label: t('api-docs'), path: "/api/docs"}
+            {icon: (<GradeIcon />), label: t('ranking'), path: "/ranking"},
+            //{icon: (<DraftsIcon />), label: t('api-docs'), path: "/api/docs"}
         ]
 
     }
@@ -72,18 +71,18 @@ class Menu extends React.Component {
         const { t } = this.props;
         return (
             <List>
-                <Link to="/profile">
-                    <ListItem button>
-                        <ListItemIcon>
-                            <InboxIcon />
-                        </ListItemIcon>
-                        <ListItemText primary={t('profile')} />
-                    </ListItem>
-                </Link>
+                {/*<Link to="/profile">*/}
+                    {/*<ListItem button>*/}
+                        {/*<ListItemIcon>*/}
+                            {/*<InboxIcon />*/}
+                        {/*</ListItemIcon>*/}
+                        {/*<ListItemText primary={t('profile')} />*/}
+                    {/*</ListItem>*/}
+                {/*</Link>*/}
                 <Link to="/logout">
                     <ListItem button>
                         <ListItemIcon>
-                            <InboxIcon />
+                            <ExitIcon />
                         </ListItemIcon>
                         <ListItemText primary={t('logout')} />
                     </ListItem>
