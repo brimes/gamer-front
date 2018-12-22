@@ -29,7 +29,7 @@ export default class AuthenticationApi extends Api {
     }
 
     async authenticate(email, password) {
-
+        console.log(email, password);
         this.validate(email, password);
 
         this.variables = {

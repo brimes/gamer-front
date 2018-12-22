@@ -21,8 +21,33 @@ class UserCredentials extends Component {
         this.props.onEnter(this.state.email, this.state.password);
     }
 
+    onCreate () {
+        this.props.onCreate(this.state.email, this.state.password);
+    }
+
+    loginOAuth (type) {
+        this.props.onOAuth(type);
+    }
+
     onReset () {
         this.props.onReset(this.state.email);
+    }
+
+    oAuthButton(imageLink, type, name) {
+        return (
+            <div style={{
+                marginLeft: "5px",
+                marginRight:  "5px"
+            }}>
+                <Button variant="contained" color="primary" onClick={() => {this.loginOAuth(type)}}>
+                    <img
+                        src={imageLink}
+                        width={40}
+                        height={40}
+                    /> {name}
+                </Button>
+            </div>
+        );
     }
 
     render() {
@@ -59,13 +84,19 @@ class UserCredentials extends Component {
                     }}
                 />
                 <div className={"login-content-buttons"}>
-                    <Button variant="contained" color="primary" onClick={() => {this.onEnter()}}>
-                        {t('access')}
-                    </Button>
                     <Button variant="contained" color="primary" onClick={() => {this.onCreate()}}>
                         {t('create-account')}
                     </Button>
+                    <Button variant="contained" color="primary" onClick={() => {this.onEnter()}}>
+                        {t('access')}
+                    </Button>
                 </div>
+
+                <div className={"login-content-buttons-oauth"}>
+                    {this.oAuthButton("https://assets-cdn.github.com/images/modules/logos_page/Octocat.png", 'github', 'Login com o github')}
+                    {this.oAuthButton("https://www.gstatic.com/mobilesdk/160512_mobilesdk/auth_service_google.svg", 'google', 'Login com o google')}
+                </div>
+
                 <Button color="secondary" onClick={() => {this.onReset()}}>
                     {t('forgot-password')}
                 </Button>

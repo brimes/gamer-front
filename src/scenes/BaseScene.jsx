@@ -68,7 +68,7 @@ export default class BaseScene extends Component {
         const { t } = this.props;
         const isOpen = typeof this.state.modal !== 'undefined' ? this.state.modal.open : false;
         const message = typeof this.state.modal !== 'undefined' ? this.state.modal.message : '';
-
+        console.log(message);
         return (
             <Modal
                 aria-labelledby="simple-modal-title"

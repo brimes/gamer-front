@@ -22,6 +22,14 @@ class LoginScene extends BaseScene {
         this.props.history.push(loginTo);
     }
 
+    showError(error) {
+        if (typeof error === 'object' && error.code) {
+            this.showModal(error.code);
+            return;
+        }
+        this.showModal(error);
+    }
+
     loginOAuth(type) {
         const self = this;
         let auth = new Auth();
@@ -29,7 +37,7 @@ class LoginScene extends BaseScene {
         auth.validate().then(() => {
             self.homeScene();
         }).catch((error) => {
-            self.showModal(error);
+            self.showError(error);
         });
     }
 
@@ -42,21 +50,20 @@ class LoginScene extends BaseScene {
         auth.validate().then(() => {
             self.homeScene();
         }).catch((error) => {
-            self.showModal(error);
+            self.showError(error);
         });
     }
 
-    loginNewEmail(name, email, password) {
+    loginNewEmail(email, password) {
         const self = this;
         let auth = new Auth();
         auth.type = 'newEmail';
-        auth.name = name;
         auth.email = email;
         auth.password = password;
         auth.validate().then(() => {
             self.homeScene();
         }).catch((error) => {
-            self.showModal(error.code);
+            self.showError(error);
         });
     }
 
@@ -72,19 +79,8 @@ class LoginScene extends BaseScene {
         auth.reset().then(() => {
             self.showModal('email-reset-sent');
         }).catch((error) => {
-            self.showModal(error.code);
+            self.showError(error.code);
         });
-    }
-
-    oAuthButton(imageLink, type) {
-        return (
-            <img
-            src={imageLink}
-            width={40}
-            height={40}
-            onClick={() => {this.loginOAuth(type)}}
-            />
-        );
     }
 
     view() {
@@ -108,6 +104,12 @@ class LoginScene extends BaseScene {
                     <UserCredentials
                         onEnter={(email, password) => {
                             this.loginEmail(email, password);
+                        }}
+                        onOAuth={(type) => {
+                            this.loginOAuth(type);
+                        }}
+                        onCreate={(email, password) => {
+                            this.loginNewEmail(email, password);
                         }}
                         onReset={(email) => {
                             this.resetPassword(email);

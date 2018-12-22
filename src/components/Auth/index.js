@@ -1,18 +1,39 @@
 
-import CustomAuth from './CustomAuth';
 import AuthenticationApi from '../../services/AuthenticationApi';
 import Cookies from 'universal-cookie';
 import base64 from './base64';
+import Firebase from "./Firebase";
 
 const cookieName = 'gamer_tkn';
 
-class Auth extends CustomAuth {
+class Auth extends Firebase {
 
     async validate() {
         const self = this;
         const result = await self.validateAccess();
-        return this.saveToken(result.token);
+        const token = await result.user.getIdToken(false);
+        if (!result.user.emailVerified) {
+            if (result.additionalUserInfo.isNewUser) {
+                this.sendConfirmationEmail()
+                throw 'confirmation-email-sent';
+            }
+            throw 'email-not-confirmed';
+        }
+        return this.getAppToken(result.user.email, token);
     }
+
+    async getAppToken(email, token) {
+        const authApi = new AuthenticationApi();
+        const response = await authApi.authenticate(email, token);
+        if (!response.token) {
+            throw {
+                code: 'auth/api-error',
+                message: "Login error " + response.message
+            };
+        }
+        return this.saveToken(response.token);
+    }
+
 
     async reset() {
         return this.resetPassword();
@@ -44,11 +65,10 @@ class Auth extends CustomAuth {
     }
 
     logout() {
+        this.singOut();
         const cookies = new Cookies();
         return cookies.remove(cookieName);
     }
-
-
 }
 
 export default Auth;
