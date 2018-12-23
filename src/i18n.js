@@ -37,7 +37,7 @@ i18n
             },
             'pt-BR': {
                 login: {
-                    "login-title": "Identifique-se!!",
+                    "login-title": "Funcional Health Tech!",
                     "access-with-o-auth": "Acesse com a sua rede social",
                     "registered-user": "Já tenho uma conta",
                     "full-name": "Nome completo",

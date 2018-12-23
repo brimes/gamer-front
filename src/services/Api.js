@@ -6,8 +6,8 @@ export default class Api {
     constructor() {
         this.type = 'post';
         this.query = '';
-        this.host = "http://10.11.0.53/";
-//        this.host = "https://gamer-fidelize.herokuapp.com/";
+//        this.host = "http://10.11.0.53/";
+        this.host = "https://gamer-fidelize.herokuapp.com/";
         this.endpoint = 'api';
         this.variables =  {};
     }

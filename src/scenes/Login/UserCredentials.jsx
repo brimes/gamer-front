@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -6,7 +6,7 @@ import {
     Email as IconEmail,
     Fingerprint as IconPassword
 } from '@material-ui/icons';
-import { translate } from 'react-i18next';
+import {translate} from 'react-i18next';
 
 class UserCredentials extends Component {
     constructor(props) {
@@ -17,30 +17,30 @@ class UserCredentials extends Component {
         }
     }
 
-    onEnter () {
+    onEnter() {
         this.props.onEnter(this.state.email, this.state.password);
     }
 
-    onCreate () {
+    onCreate() {
         this.props.onCreate(this.state.email, this.state.password);
     }
 
-    loginOAuth (type) {
+    loginOAuth(type) {
         this.props.onOAuth(type);
     }
 
-    onReset () {
+    onReset() {
         this.props.onReset(this.state.email);
     }
 
     oAuthButton(imageLink, type, name) {
         return (
-            <div style={{
-                marginLeft: "5px",
-                marginRight:  "5px"
-            }}>
-                <Button variant="contained" color="primary" onClick={() => {this.loginOAuth(type)}}>
+            <div className={"button-content-login"}>
+                <Button variant="contained" color="primary" onClick={() => {
+                    this.loginOAuth(type)
+                }}>
                     <img
+                        style={{marginRight: 12}}
                         src={imageLink}
                         width={40}
                         height={40}
@@ -51,53 +51,71 @@ class UserCredentials extends Component {
     }
 
     render() {
-        const { classes, t } = this.props;
+        const {classes, t} = this.props;
         return (
             <div className={"login-content"}>
-                <TextField
-                    className={'text-field'}
-                    id="email-field"
-                    placeholder={t('email')}
-                    value={this.state.email}
-                    onChange={(event) => {this.setState({email: event.target.value})}}
-                    InputProps={{
-                        startAdornment: (
-                            <InputAdornment position="start">
-                                <IconEmail/>
-                            </InputAdornment>
-                        ),
-                    }}
-                />
-                <TextField
-                    className={'text-field'}
-                    id="password-field"
-                    type={"password"}
-                    value={this.state.password}
-                    placeholder={t('password')}
-                    onChange={(event) => {this.setState({password: event.target.value})}}
-                    InputProps={{
-                        startAdornment: (
-                            <InputAdornment position="start">
-                                <IconPassword/>
-                            </InputAdornment>
-                        ),
-                    }}
-                />
+                <div className={"button-content-login"}>
+                    <TextField
+                        className={'text-field'}
+                        id="email-field"
+                        placeholder={t('email')}
+                        value={this.state.email}
+                        onChange={(event) => {
+                            this.setState({email: event.target.value})
+                        }}
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <IconEmail/>
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
+                </div>
+                <div className={"button-content-login"}>
+                    <TextField
+                        className={'text-field'}
+                        id="password-field"
+                        type={"password"}
+                        value={this.state.password}
+                        placeholder={t('password')}
+                        onChange={(event) => {
+                            this.setState({password: event.target.value})
+                        }}
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <IconPassword/>
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
+                </div>
                 <div className={"login-content-buttons"}>
-                    <Button variant="contained" color="primary" onClick={() => {this.onCreate()}}>
-                        {t('create-account')}
-                    </Button>
-                    <Button variant="contained" color="primary" onClick={() => {this.onEnter()}}>
-                        {t('access')}
-                    </Button>
+                    <div className={"button-content-login"}>
+                        <Button variant="contained" color="primary" onClick={() => {
+                            this.onCreate()
+                        }}>
+                            {t('create-account')}
+                        </Button>
+                    </div>
+                    <div className={"button-content-login"}>
+                        <Button variant="contained" color="primary" onClick={() => {
+                            this.onEnter()
+                        }}>
+                            {t('access')}
+                        </Button>
+                    </div>
                 </div>
 
                 <div className={"login-content-buttons-oauth"}>
-                    {this.oAuthButton("https://assets-cdn.github.com/images/modules/logos_page/Octocat.png", 'github', 'Login com o github')}
-                    {this.oAuthButton("https://www.gstatic.com/mobilesdk/160512_mobilesdk/auth_service_google.svg", 'google', 'Login com o google')}
+                    {this.oAuthButton("https://assets-cdn.github.com/images/modules/logos_page/Octocat.png", 'github', 'Acessar com github')}
+                    {this.oAuthButton("https://www.gstatic.com/mobilesdk/160512_mobilesdk/auth_service_google.svg", 'google', 'Acessar com google')}
                 </div>
 
-                <Button color="secondary" onClick={() => {this.onReset()}}>
+                <Button color="secondary" onClick={() => {
+                    this.onReset()
+                }}>
                     {t('forgot-password')}
                 </Button>
             </div>

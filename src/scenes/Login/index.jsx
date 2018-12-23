@@ -99,7 +99,7 @@ class LoginScene extends BaseScene {
             >
                 <div className={"login-panel"}>
                     <Typography variant="title">
-                        {t('login-title')}
+                        <img src={"img/funcionalLogo.png"} width={250}/>
                     </Typography>
                     <UserCredentials
                         onEnter={(email, password) => {
