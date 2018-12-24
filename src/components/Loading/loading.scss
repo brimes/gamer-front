@@ -1,0 +1,63 @@
+
+@mixin position-center($text-align: center) {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: $text-align;
+}
+
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 9999;
+}
+
+.loading-text {
+  @include position-center;
+  width: 100%;
+  height: 100px;
+  line-height: 100px;
+  span {
+    display: inline-block;
+    margin: 0 5px;
+    color: #47D445;
+    font-family: 'Verdana', sans-serif;
+    @for $i from 0 through 6 {
+      &:nth-child(#{$i + 1}) {
+        filter: blur(0px);
+        animation: blur-text 2s #{$i/6}s infinite linear alternate;
+      }
+    }
+  }
+}
+
+.open-box {
+  animation-duration: 0.5s;
+  animation-name: open-box-anim;
+}
+
+@keyframes blur-text {
+  0% {filter: blur(0px);}
+  100% {filter: blur(4px);}
+}
+
+@keyframes open-box-anim {
+  from {
+    top: 49%;
+    bottom: 49%;
+    height: auto;
+  }
+
+  to {
+    top: 0;
+    bottom: 0;
+    height: auto;
+  }
+}

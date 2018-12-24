@@ -23,6 +23,7 @@ class LoginScene extends BaseScene {
     }
 
     showError(error) {
+        this.closeLoading();
         if (typeof error === 'object' && error.code) {
             this.showModal(error.code);
             return;
@@ -31,6 +32,7 @@ class LoginScene extends BaseScene {
     }
 
     loginOAuth(type) {
+        this.showLoading();
         const self = this;
         let auth = new Auth();
         auth.type = type;
@@ -43,6 +45,7 @@ class LoginScene extends BaseScene {
 
     loginEmail(email, password) {
         const self = this;
+        this.showLoading();
         let auth = new Auth();
         auth.type = 'email';
         auth.email = email;
@@ -56,6 +59,7 @@ class LoginScene extends BaseScene {
 
     loginNewEmail(email, password) {
         const self = this;
+        this.showLoading();
         let auth = new Auth();
         auth.type = 'newEmail';
         auth.email = email;

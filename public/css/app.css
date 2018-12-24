@@ -2,8 +2,6 @@
 
 .login-panel {
     background-color: #3C3F41;
-    height: 350px;
-    width: 400px;
     border-radius: 15px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -80,6 +78,11 @@ html a {
 
 .main-content {
     border: 1px solid #000;
+}
+
+.main-box {
+    height: 100%;
+
 }
 
 @media only screen and (max-width: 600px) {

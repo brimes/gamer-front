@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import { Redirect } from 'react-router-dom'
 import Auth from '../components/Auth';
 import Template from './Template';
+import Loading from "../components/Loading";
 
 const theme = createMuiTheme({
     palette: {
@@ -26,7 +27,6 @@ const theme = createMuiTheme({
 const style = {
     paper: {
         position: 'absolute',
-        width: theme.spacing.unit * 50,
         backgroundColor: theme.palette.background.paper,
         boxShadow: theme.shadows[5],
         padding: theme.spacing.unit * 4,
@@ -50,6 +50,14 @@ export default class BaseScene extends Component {
         }
         this.auth = new Auth();
         this.session = this.auth.tokenPayload();
+    }
+
+    showLoading() {
+        this.setState({loading: true});
+    }
+
+    closeLoading() {
+        this.setState({loading: false});
     }
 
     showModal(message) {
@@ -126,6 +134,7 @@ export default class BaseScene extends Component {
 
         return (
             <MuiThemeProvider theme={theme}>
+                <Loading active={this.state.loading}/>
                 {this.content()}
                 {this.modalContent()}
             </MuiThemeProvider>
