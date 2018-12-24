@@ -87,6 +87,7 @@ class EnhancedTable extends React.Component {
                 <div className={classes.tableWrapper}>
                     <Table className={classes.table} aria-labelledby="tableTitle">
                         <EnhancedTableHead
+                            className={classes.tableCell}
                             columnData={columns}
                             numSelected={selected.length}
                             order={order}
@@ -116,7 +117,7 @@ class EnhancedTable extends React.Component {
                                             )}
                                             {columns.map((col) => {
                                                 const key = col.id + "-" + row.id;
-                                                return (<EnhancedTableCell key={key} params={col} row={row}/>);
+                                                return (<EnhancedTableCell  className={classes.tableCell} key={key} params={col} row={row}/>);
                                             })}
                                         </TableRow>
                                     );

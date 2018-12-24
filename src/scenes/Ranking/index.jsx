@@ -19,11 +19,19 @@ class RankingScene extends BaseScene {
         this.updateTable();
     }
 
+    parserData(data) {
+        return data.map(row => {
+            row.name = row.position + " - " + row.name;
+            return row;
+        })
+    }
+
     updateTable() {
         let self = this;
         this.setState({data: []});
         (new RankingApi()).get().then(data => {
-            self.setState({data});
+            const newData = self.parserData(data);
+            self.setState({data: newData});
         }).catch(error => {
             console.log(error);
             self.showModal(error);
@@ -34,9 +42,8 @@ class RankingScene extends BaseScene {
         const { t } = this.props;
         return [
             {id: 'avatar', type: 'image', disablePadding: false, label: t('picture')},
-            {id: 'position', type: 'numeric', disablePadding: false, label: t('position'), width: 30},
-            {id: 'score', type: 'numeric', disablePadding: false, label: t('score'), width: 30},
             {id: 'name', type: 'text', disablePadding: false, label: t('name')},
+            {id: 'score', type: 'numeric', disablePadding: false, label: t('score'), width: 10},
             {id: 'email', type: 'text', disablePadding: false, label: t('email')},
             {id: 'team', type: 'text', disablePadding: false, label: t('team')},
             {id: 'xp', type: 'numeric', disablePadding: false, label: t('experience')},

@@ -106,6 +106,7 @@ class Template extends React.Component {
 const styles = theme => ({
     root: {
         flexGrow: 1,
+        minHeight: '100%',
     },
     appFrame: {
         height: 430,

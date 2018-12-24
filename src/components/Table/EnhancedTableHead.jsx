@@ -15,7 +15,7 @@ class EnhancedTableHead extends React.Component {
     };
 
     render() {
-        const {onSelectAllClick, order, orderBy, numSelected, rowCount, columnData, hasCheckbox} = this.props;
+        const {onSelectAllClick, order, orderBy, numSelected, rowCount, columnData, hasCheckbox, className} = this.props;
 
         return (
             <TableHead>
@@ -32,6 +32,7 @@ class EnhancedTableHead extends React.Component {
                     {columnData.map(column => {
                         return (
                             <TableCell
+                                className={className}
                                 key={column.id}
                                 numeric={column.numeric}
                                 padding={column.disablePadding ? 'none' : 'default'}

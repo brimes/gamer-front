@@ -4,7 +4,7 @@ import TableCell from '@material-ui/core/TableCell';
 
 class EnhancedTableCell extends React.Component {
     render() {
-        const { params, row } = this.props;
+        const { params, row, className } = this.props;
 
 
         const isNumeric = params.type === 'numeric';
@@ -18,7 +18,7 @@ class EnhancedTableCell extends React.Component {
             width = 55;
         }
 
-        return (<TableCell key={key} numeric={isNumeric} width={width}>{value}</TableCell>)
+        return (<TableCell className={className} key={key} numeric={isNumeric} width={width}>{value}</TableCell>)
     }
 }
 

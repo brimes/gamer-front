@@ -10,7 +10,10 @@ import { translate } from 'react-i18next';
 // Icons
 import DraftsIcon from '@material-ui/icons/Drafts';
 import GradeIcon from '@material-ui/icons/Grade';
+import PersonIcon from '@material-ui/icons/Person';
 import ExitIcon from '@material-ui/icons/ExitToApp';
+import SettingsIcon from '@material-ui/icons/Settings';
+import GroupUsersIcon from '@material-ui/icons/Group';
 
 
 let counter = 0;
@@ -45,7 +48,7 @@ class Menu extends React.Component {
     admin() {
         const { t } = this.props;
         let itens = this.normal();
-        itens.push({icon: (<DraftsIcon />), label: t('users'), path: "/users"});
+        itens.push({icon: (<GroupUsersIcon/>), label: t('users'), path: "/users"});
         return itens;
 
     }
@@ -54,7 +57,6 @@ class Menu extends React.Component {
         const { t } = this.props;
         return [
             {icon: (<GradeIcon />), label: t('ranking'), path: "/ranking"},
-            //{icon: (<DraftsIcon />), label: t('api-docs'), path: "/api/docs"}
         ]
 
     }
@@ -62,7 +64,7 @@ class Menu extends React.Component {
     master() {
         const { t } = this.props;
         let itens = this.admin();
-        itens.push({icon: (<DraftsIcon />), label: t('configurations'), path: "/config"});
+        itens.push({icon: (<SettingsIcon />), label: t('configurations'), path: "/config"});
         return itens;
 
     }
@@ -71,14 +73,14 @@ class Menu extends React.Component {
         const { t } = this.props;
         return (
             <List>
-                {/*<Link to="/profile">*/}
-                    {/*<ListItem button>*/}
-                        {/*<ListItemIcon>*/}
-                            {/*<InboxIcon />*/}
-                        {/*</ListItemIcon>*/}
-                        {/*<ListItemText primary={t('profile')} />*/}
-                    {/*</ListItem>*/}
-                {/*</Link>*/}
+                <Link to="/profile">
+                    <ListItem button>
+                        <ListItemIcon>
+                            <PersonIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={t('profile')} />
+                    </ListItem>
+                </Link>
                 <Link to="/logout">
                     <ListItem button>
                         <ListItemIcon>

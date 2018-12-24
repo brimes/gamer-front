@@ -11,6 +11,7 @@ import HomeScene from "./scenes/Home";
 import UsersScene from "./scenes/Users";
 import RankingScene from "./scenes/Ranking";
 import DocsScene from "./scenes/Docs";
+import ProfileScene from "./scenes/Profile";
 
 if (document.getElementById('application-content')) {
     ReactDOM.render(
@@ -22,7 +23,7 @@ if (document.getElementById('application-content')) {
                 <Route path="/logout" exact={true} component={LoginScene} />
                 <Route path="/users" exact={true} component={UsersScene} />
                 <Route path="/ranking" exact={true} component={RankingScene} />
-                <Route path="/api/docs" exact={true} component={DocsScene} />
+                <Route path="/profile" exact={true} component={ProfileScene} />
             </Switch>
         </BrowserRouter>,
         document.getElementById('application-content'));

@@ -62,7 +62,10 @@ i18n
                 },
                 menu: {
                     'logout': 'Sair',
-                    'ranking': 'Ranking'
+                    'ranking': 'Ranking',
+                    'profile': 'Meu perfil',
+                    'configurations': 'Configurações',
+                    'users': 'Usuários',
                 },
                 ranking: {
                     'ranking': 'Top 10',
