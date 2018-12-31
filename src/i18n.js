@@ -65,7 +65,7 @@ i18n
                     'ranking': 'Ranking',
                     'profile': 'Meu perfil',
                     'configurations': 'Configurações',
-                    'users': 'Usuários',
+                    'users': 'Jogadores',
                 },
                 ranking: {
                     'ranking': 'Top 10',
@@ -76,6 +76,15 @@ i18n
                     'team': 'Time',
                     'score': "Pontos",
                     'experience': "XP",
+                },
+                users: {
+                    'users': 'Jogadores',
+                    'name': 'Nome',
+                    'team': 'Time',
+                    'email': 'E-Mail',
+                    'role': 'Perfil',
+                    'sign-in-provider': 'Tipo de login',
+                    'created-at': 'Data de criação',
                 }
             }
         }

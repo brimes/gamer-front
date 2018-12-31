@@ -57,6 +57,7 @@ class Menu extends React.Component {
         const { t } = this.props;
         return [
             {icon: (<GradeIcon />), label: t('ranking'), path: "/ranking"},
+            {icon: (<GroupUsersIcon/>), label: t('users'), path: "/users"}
         ]
 
     }

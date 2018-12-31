@@ -24,6 +24,7 @@ if (document.getElementById('application-content')) {
                 <Route path="/users" exact={true} component={UsersScene} />
                 <Route path="/ranking" exact={true} component={RankingScene} />
                 <Route path="/profile" exact={true} component={ProfileScene} />
+                <Route path="/profile/:id" exact={true} component={ProfileScene} />
             </Switch>
         </BrowserRouter>,
         document.getElementById('application-content'));

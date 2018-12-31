@@ -16,7 +16,6 @@ class Loading extends React.Component {
     }
 
     render() {
-        console.log(this.props.active);
         if (!this.props.active) {
             return null;
         }

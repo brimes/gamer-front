@@ -69,7 +69,7 @@ body {
     margin: 0px;
     height: 100%;
     font-family: Roboto, sans-serif;
-    background-color: #000;
+    background-color: #303030;
 }
 
 html a {
@@ -83,6 +83,19 @@ html a {
 .main-box {
     height: 100%;
 
+}
+
+.row-button {
+    display: none;
+}
+
+.buttons-row {
+    display: flex;
+    justify-content: space-around;
+}
+
+.show-buttons:hover .row-button {
+    display: block;
 }
 
 @media only screen and (max-width: 600px) {

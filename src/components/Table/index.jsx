@@ -20,9 +20,12 @@ class EnhancedTable extends React.Component {
             order: 'asc',
             orderBy: 'calories',
             selected: [],
-            page: 0,
-            rowsPerPage: 15,
         };
+        this.defaultPagination = {
+            totalRows: 0,
+            rowsPerPage: 15,
+            page: 0
+        }
     }
 
     handleRequestSort(property) {
@@ -65,11 +68,17 @@ class EnhancedTable extends React.Component {
     };
 
     handleChangePage(event, page) {
-        this.setState({page});
+        this.props.onChangePagination({
+            page: (page + 1),
+            rowsPerPage: this.defaultPagination.rowsPerPage
+        });
     };
 
     handleChangeRowsPerPage(event) {
-        this.setState({rowsPerPage: event.target.value});
+        this.props.onChangePagination({
+            page: 1,
+            rowsPerPage: event.target.value
+        });
     };
 
     isSelected(id) {
@@ -77,13 +86,15 @@ class EnhancedTable extends React.Component {
     }
 
     render() {
-        const {classes, columns, title, data, onDeleteItems, hasCheckbox} = this.props;
-        const {order, orderBy, selected, rowsPerPage, page} = this.state;
-        const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
+        const {classes, columns, title, data, onDeleteItems, hasCheckbox, pagination} = this.props;
+        this.defaultPagination = (!pagination || !pagination.totalRows) ? this.defaultPagination : pagination;
+        const {order, orderBy, selected} = this.state;
+        const {rowsPerPage, page, totalRows} = this.defaultPagination;
+        const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length * rowsPerPage);
 
         return (
             <Paper className={classes.root}>
-                <EnhancedTableToolbar numSelected={selected.length} tableTitle={title} onDeleteButton={() => {onDeleteItems(selected)}}/>
+                {/*<EnhancedTableToolbar numSelected={selected.length} tableTitle={title} onDeleteButton={() => {onDeleteItems(selected)}}/>*/}
                 <div className={classes.tableWrapper}>
                     <Table className={classes.table} aria-labelledby="tableTitle">
                         <EnhancedTableHead
@@ -100,7 +111,7 @@ class EnhancedTable extends React.Component {
                         <TableBody>
                             {data
                                 .map(row => {
-                                    const isSelected = this.isSelected(row.id);
+                                    const isSelected = false; //this.isSelected(row.id);
                                     return (
                                         <TableRow
                                             hover
@@ -109,6 +120,9 @@ class EnhancedTable extends React.Component {
                                             tabIndex={-1}
                                             key={row.id}
                                             selected={isSelected}
+                                            classes={{
+                                                "hover": "show-buttons",
+                                            }}
                                         >
                                             {hasCheckbox && (
                                                 <TableCell padding="checkbox" width={50}>
@@ -130,20 +144,20 @@ class EnhancedTable extends React.Component {
                         </TableBody>
                     </Table>
                 </div>
-                <TablePagination
+                {pagination && (<TablePagination
                     component="div"
-                    count={data.length}
+                    count={totalRows}
                     rowsPerPage={rowsPerPage}
-                    page={page}
+                    page={page - 1}
                     backIconButtonProps={{
                         'aria-label': 'Previous Page',
                     }}
                     nextIconButtonProps={{
                         'aria-label': 'Next Page',
                     }}
-                    onChangePage={this.handleChangePage}
-                    onChangeRowsPerPage={this.handleChangeRowsPerPage}
-                />
+                    onChangePage={(event, page) => {this.handleChangePage(event, page)}}
+                    onChangeRowsPerPage={(event) => {this.handleChangeRowsPerPage(event)}}
+                />)}
             </Paper>
         );
     }

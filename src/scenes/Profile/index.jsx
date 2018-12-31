@@ -11,13 +11,13 @@ class ProfileScene extends BaseScene {
     }
 
     view() {
-        const {  t } = this.props;
+        const {  t, match } = this.props;
         return (
             <div style={{
                 height: "100%"
             }}>
                 <Typography variant="title">
-                    Em breve
+                    Em breve {match.params.id}
                 </Typography>
             </div>
         );
